@@ -255,3 +255,9 @@ variable "f5_cloud_failover_label" {
   default     = "myfailover"
   description = "This is a tag used for F5 Cloud Failover extension"
 }
+# Need it for Israel rejion
+#variable "min_cpu_platform" {
+#  type        = string
+#  default     = "Intel Skylake"
+#  description = "Minimum CPU platform for the VM instance such as Intel Haswell or Intel Skylake"
+#}
