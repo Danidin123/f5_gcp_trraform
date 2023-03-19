@@ -1,4 +1,4 @@
-# Deploying BIG-IP VEs in Google - High Availability (Active/Standby): 3-NIC, Failover via API
+# Deploying BIG-IP VEs in Google - High Availability (Active/Standby): 5-NIC, Failover via API
 
 ## To Do
 - Community support only. Template is not F5 supported.
