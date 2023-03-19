@@ -234,6 +234,9 @@ cat << 'EOF' >> /config/cloud/runtime-init-conf.yaml
     headers:
       - name: Metadata-Flavor
         value: Google
+  - name: LICENSE_KEY
+    type: url
+    value: file:///config/cloud/license_key
   - name: HOST1
     type: static
     value: ${host1}
@@ -313,6 +316,10 @@ extension_services:
             search:
               - '{{{ DNS_SUFFIX }}}'
               - f5.com
+          My_License:
+            class: License
+            licenseType: regKey
+            regKey: '{{{LICENSE_KEY}}}'
           myNtp:
             class: NTP
             servers:
