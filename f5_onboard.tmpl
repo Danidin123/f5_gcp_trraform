@@ -316,10 +316,10 @@ extension_services:
             search:
               - '{{{ DNS_SUFFIX }}}'
               - f5.com
-          My_License:
+          myLicense:
             class: License
             licenseType: regKey
-            regKey: '{{{LICENSE_KEY}}}'
+            regKey: '${regKey}'
           myNtp:
             class: NTP
             servers:
@@ -516,6 +516,7 @@ post_onboard_enabled:
 EOF
 fi
 
+
 # Create nic_swap script when multi nic on first boot
 COMPUTE_BASE_URL="http://metadata.google.internal/computeMetadata/v1"
 
@@ -566,7 +567,8 @@ if [[ ${NIC_COUNT} && ! -f /config/nicswap_finished ]]; then
    reboot
 EOF
 fi
-
+cat /config/cloud/runtime-init-conf.yaml
+cat /config/cloud/license_key
 # Create run_runtime_init.sh script on first boot
 if [[ ! -f /config/nicswap_finished ]]; then
   cat << 'EOF' >> /config/cloud/run_runtime_init.sh

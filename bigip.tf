@@ -227,7 +227,7 @@ module "bigip" {
   vm_name                           = format("%s-bigip1-%s", var.projectPrefix, random_id.buildSuffix.hex)
   project_id                        = var.gcp_project_id
   machine_type                      = var.machine_type
-  min_cpu_platform                  = var.min_cpu_platform # Need it for Israel rejoin
+  min_cpu_platform                  = var.min_cpu_platform # Need it for Israel region
   image                             = var.image_name
   f5_username                       = var.f5_username
   f5_ssh_publickey                  = var.ssh_key
@@ -251,7 +251,7 @@ module "bigip2" {
   vm_name                           = format("%s-bigip2-%s", var.projectPrefix, random_id.buildSuffix.hex)
   project_id                        = var.gcp_project_id
   machine_type                      = var.machine_type
-  min_cpu_platform                  = var.min_cpu_platform # Need it for Israel rejoin
+  min_cpu_platform                  = var.min_cpu_platform # Need it for Israel region
   image                             = var.image_name
   f5_username                       = var.f5_username
   f5_ssh_publickey                  = var.ssh_key
