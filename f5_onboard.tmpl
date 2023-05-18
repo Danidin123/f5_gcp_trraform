@@ -246,6 +246,9 @@ cat << 'EOF' >> /config/cloud/runtime-init-conf.yaml
   - name: FAILOVER_LABEL
     type: static
     value: ${f5_cloud_failover_label}
+  - name: ALIAS_IP_RANGE
+    type: static
+    value: ${scopingAddress}
   - name: MANAGED_ROUTE
     type: static
     value: ${managed_route}
@@ -457,24 +460,17 @@ extension_services:
       value:
         class: Cloud_Failover
         environment: gcp
+        controls:
+          class: Controls
+          logLevel: silly
         externalStorage:
           scopingTags:
             f5_cloud_failover_label: '{{{ FAILOVER_LABEL }}}'
         failoverAddresses:
           enabled: true
-          scopingTags:
-            f5_cloud_failover_label: '{{{ FAILOVER_LABEL }}}'
-        failoverRoutes:
-          enabled: true
-          scopingTags:
-            f5_cloud_failover_label: '{{{ FAILOVER_LABEL }}}'
-          scopingAddressRanges:
-            - range: '{{{ MANAGED_ROUTE }}}'
-          defaultNextHopAddresses:
-            discoveryType: static
-            items:
-              - '{{{ SELF_IP_EXTERNAL }}}'
-              - '{{{ REMOTE_SELF_IP_EXTERNAL }}}'
+          addressGroupDefinitions:
+          - type: aliasAddress
+            scopingAddress: '{{{ ALIAS_IP_RANGE }}}'
     - extensionType: as3
       type: inline
       value:
